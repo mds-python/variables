@@ -34,7 +34,7 @@ class MostCommon(unittest.TestCase):
     def test_single(self, stdout):
         runfile('most_frequent')
         results = [letter for letter in (stdout.getvalue().upper().split('\n')) if letter]
-        self.assertEqual(results, ['A'])
+        self.assertEqual(['A'], results)
 
     @patchio("KaluKaMa KaKo")
     def test_one_of_many(self, stdout):
@@ -49,14 +49,14 @@ class MostCommon(unittest.TestCase):
         results = [letter for letter in (stdout.getvalue().upper().split('\n')) if letter]
         if len(results) == 1:
             self.skipTest("not required")
-        self.assertEqual(set(results), {'A', 'K'})
+        self.assertEqual({'A', 'K'}, set(results))
 
 
 class Remove3(unittest.TestCase):
     @patchio("Oiwah1eesah2nieDaeshijeeZ4oingoy")
     def test_removal(self, stdout):
         runfile('remove3')
-        self.assertEqual(stdout.getvalue().strip()  , "OiaheeahniDashjeZ4inoy")
+        self.assertEqual("OiaheeahniDashjeZ4inoy", stdout.getvalue().strip())
 
 
 class SwapNeighbors(unittest.TestCase):
@@ -64,12 +64,12 @@ class SwapNeighbors(unittest.TestCase):
     @patchio("1 2 3 4 5 6 7 8 9 0")
     def test_even(self, stdout):
         runfile('swap_neighbors')
-        self.assertEqual(stdout.getvalue().strip(), "2 1 4 3 6 5 8 7 0 9")
+        self.assertEqual("2 1 4 3 6 5 8 7 0 9", stdout.getvalue().strip())
 
     @patchio("1 2 3 4 5 6 7 8 9")
     def test_odd(self, stdout):
         runfile('swap_neighbors')
-        self.assertEqual(stdout.getvalue().strip(), "2 1 4 3 6 5 8 7 9")
+        self.assertEqual("2 1 4 3 6 5 8 7 9", stdout.getvalue().strip())
 
 
 if __name__ == '__main__':
